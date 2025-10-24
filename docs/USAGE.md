@@ -71,15 +71,15 @@ console.log(result.tenGod.hour);   // 时柱十神
 
 ### 3. 地支藏干
 
-每个地支中藏有若干天干，分为本气、中气、余气。
+每个地支中藏有若干天干，分为本气、中气、余气。每个藏干都有对应的十神关系。
 
 ```typescript
 const result = bazi.getResult();
 
 // 年支藏干
 result.eightChar.year.hideHeavenStems.forEach(hide => {
-  console.log(`${hide.stem}(${hide.type})`);
-  // 例如: "丁(本气)" "己(中气)"
+  console.log(`${hide.stem}[${hide.tenGod}](${hide.type})`);
+  // 例如: "丁[劫财](本气)" "己[伤官](余气)"
 });
 ```
 
@@ -325,6 +325,9 @@ npm run example
 
 # 运行高级示例
 npm run example:advanced
+
+# 地支藏干与十神分析示例
+npm run example:hidden
 
 # 直接运行编译后的版本
 node examples/using-compiled.js

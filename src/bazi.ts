@@ -26,6 +26,7 @@ export interface PillarInfo {
   hideHeavenStems: Array<{
     stem: string;
     type: string;
+    tenGod: string;
   }>;
 }
 
@@ -101,7 +102,7 @@ export class BaZi {
     this.childLimit = ChildLimit.fromSolarTime(this.solarTime, this.gender);
   }
 
-  private getPillarInfo(cycle: SixtyCycle): PillarInfo {
+  private getPillarInfo(cycle: SixtyCycle, dayMaster: HeavenStem): PillarInfo {
     const heavenStem = cycle.getHeavenStem();
     const earthBranch = cycle.getEarthBranch();
     const element = heavenStem.getElement();
@@ -109,7 +110,8 @@ export class BaZi {
     
     const hideHeavenStems = earthBranch.getHideHeavenStems().map(hide => ({
       stem: hide.getHeavenStem().getName(),
-      type: this.getHideHeavenStemTypeName(hide.getType())
+      type: this.getHideHeavenStemTypeName(hide.getType()),
+      tenGod: this.getTenGod(dayMaster, hide.getHeavenStem())
     }));
 
     return {
@@ -176,10 +178,10 @@ export class BaZi {
       },
       gender: this.gender === Gender.MAN ? '男' : '女',
       eightChar: {
-        year: this.getPillarInfo(yearCycle),
-        month: this.getPillarInfo(monthCycle),
-        day: this.getPillarInfo(dayCycle),
-        hour: this.getPillarInfo(hourCycle)
+        year: this.getPillarInfo(yearCycle, dayMaster),
+        month: this.getPillarInfo(monthCycle, dayMaster),
+        day: this.getPillarInfo(dayCycle, dayMaster),
+        hour: this.getPillarInfo(hourCycle, dayMaster)
       },
       tenGod,
       dayMaster: {
@@ -240,10 +242,10 @@ export class BaZi {
     output += '─'.repeat(60) + '\n';
     output += '                    地支藏干                    \n';
     output += '─'.repeat(60) + '\n';
-    output += `年支 ${result.eightChar.year.earthBranch}: ${result.eightChar.year.hideHeavenStems.map(h => `${h.stem}(${h.type})`).join(' ')}\n`;
-    output += `月支 ${result.eightChar.month.earthBranch}: ${result.eightChar.month.hideHeavenStems.map(h => `${h.stem}(${h.type})`).join(' ')}\n`;
-    output += `日支 ${result.eightChar.day.earthBranch}: ${result.eightChar.day.hideHeavenStems.map(h => `${h.stem}(${h.type})`).join(' ')}\n`;
-    output += `时支 ${result.eightChar.hour.earthBranch}: ${result.eightChar.hour.hideHeavenStems.map(h => `${h.stem}(${h.type})`).join(' ')}\n\n`;
+    output += `年支 ${result.eightChar.year.earthBranch}: ${result.eightChar.year.hideHeavenStems.map(h => `${h.stem}[${h.tenGod}](${h.type})`).join(' ')}\n`;
+    output += `月支 ${result.eightChar.month.earthBranch}: ${result.eightChar.month.hideHeavenStems.map(h => `${h.stem}[${h.tenGod}](${h.type})`).join(' ')}\n`;
+    output += `日支 ${result.eightChar.day.earthBranch}: ${result.eightChar.day.hideHeavenStems.map(h => `${h.stem}[${h.tenGod}](${h.type})`).join(' ')}\n`;
+    output += `时支 ${result.eightChar.hour.earthBranch}: ${result.eightChar.hour.hideHeavenStems.map(h => `${h.stem}[${h.tenGod}](${h.type})`).join(' ')}\n\n`;
     
     output += '─'.repeat(60) + '\n';
     output += '                    起运信息                    \n';

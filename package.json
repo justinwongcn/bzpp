@@ -8,6 +8,7 @@
     "build": "tsc",
     "example": "npx ts-node examples/basic.ts",
     "example:advanced": "npx ts-node examples/advanced.ts",
+    "example:hidden": "npx ts-node examples/analyze-hidden-stems.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
