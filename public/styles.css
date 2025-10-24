@@ -1,0 +1,764 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-gold: #D4AF37;
+  --dark-red: #8B0000;
+  --ink-black: #1a1a1a;
+  --ancient-bronze: #7c5e3f;
+  --jade-green: #3A7D44;
+  --mystic-purple: #5A3A6E;
+  --paper-bg: #F5F1E8;
+  --border-gold: #B8860B;
+}
+
+body {
+  font-family: 'Noto Serif SC', 'STSong', serif;
+  background: #0F0C1C;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--paper-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.mystical-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" font-size="60" fill="rgba(212,175,55,0.03)" text-anchor="middle" dominant-baseline="middle">☯</text></svg>');
+  background-size: 200px 200px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 标题样式 */
+.mystical-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  padding: 60px 20px;
+}
+
+.header-ornament {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--primary-gold), 
+    var(--primary-gold), 
+    transparent
+  );
+  margin: 20px auto;
+  max-width: 400px;
+  position: relative;
+}
+
+.header-ornament::before,
+.header-ornament::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-gold);
+  font-size: 12px;
+}
+
+.header-ornament::before { left: 0; }
+.header-ornament::after { right: 0; }
+
+.title-main {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-gold), #FFD700, var(--primary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.3em;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  margin: 20px 0;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--paper-bg);
+  opacity: 0.8;
+  letter-spacing: 0.5em;
+  font-weight: 300;
+}
+
+/* 卡片通用样式 */
+.mystical-card {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95), 
+    rgba(42, 42, 42, 0.95)
+  );
+  border: 2px solid var(--border-gold);
+  border-radius: 15px;
+  padding: 0;
+  margin-bottom: 30px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.mystical-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(212, 175, 55, 0.5), 
+    transparent
+  );
+}
+
+.card-header {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.1), 
+    rgba(184, 134, 11, 0.1)
+  );
+  border-bottom: 2px solid var(--border-gold);
+  padding: 20px 30px;
+  position: relative;
+}
+
+.card-header h2,
+.card-header h3 {
+  color: var(--primary-gold);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.card-content {
+  padding: 30px;
+}
+
+/* 表单样式 */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--primary-gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.form-group input[type="number"] {
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--paper-bg);
+  font-family: 'Noto Serif SC', serif;
+  transition: all 0.3s ease;
+}
+
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-group input[type="number"]::placeholder {
+  color: rgba(245, 241, 232, 0.3);
+}
+
+/* 性别选择器 */
+.gender-selector {
+  margin: 30px 0;
+}
+
+.gender-selector > label {
+  display: block;
+  color: var(--primary-gold);
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.gender-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.gender-btn {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.gender-btn input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.gender-label {
+  display: block;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--paper-bg);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+}
+
+.gender-btn input[type="radio"]:checked + .gender-label {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.3), 
+    rgba(184, 134, 11, 0.3)
+  );
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  color: var(--primary-gold);
+}
+
+/* 按钮样式 */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Noto Serif SC', serif;
+  letter-spacing: 0.2em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  flex: 2;
+  background: linear-gradient(135deg, var(--primary-gold), var(--border-gold));
+  color: var(--ink-black);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+}
+
+.btn-secondary {
+  flex: 1;
+  background: rgba(124, 94, 63, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  color: var(--paper-bg);
+}
+
+.btn-secondary:hover {
+  background: rgba(124, 94, 63, 0.5);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+}
+
+/* 结果容器 */
+.result-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.info-card,
+.daymaster-card {
+  grid-column: span 1;
+}
+
+.pillars-card,
+.hidden-stems-card,
+.fortune-card,
+.special-card {
+  grid-column: 1 / -1;
+}
+
+/* 基本信息卡片 */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--primary-gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.info-value {
+  color: var(--paper-bg);
+  font-weight: 400;
+}
+
+/* 四柱八字 */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.pillar-item {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pillar-item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    var(--primary-gold), 
+    transparent, 
+    var(--primary-gold)
+  );
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.pillar-item:hover::before {
+  opacity: 0.5;
+}
+
+.pillar-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.pillar-label {
+  font-size: 0.9rem;
+  color: var(--primary-gold);
+  margin-bottom: 15px;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+.pillar-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-gold);
+  margin: 15px 0;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.pillar-element {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 10px 0;
+  letter-spacing: 0.2em;
+}
+
+.pillar-tengod {
+  font-size: 1rem;
+  color: var(--paper-bg);
+  opacity: 0.8;
+  margin-top: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* 日主 */
+.daymaster-info {
+  text-align: center;
+  padding: 40px;
+}
+
+.daymaster-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--primary-gold);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.daymaster-element {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+/* 地支藏干 */
+.hidden-stems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.hidden-stem-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hidden-stem-header {
+  background: rgba(212, 175, 55, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.stem-label {
+  color: var(--primary-gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.stem-branch {
+  color: var(--paper-bg);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.stem-list {
+  padding: 15px 20px;
+}
+
+.stem-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.stem-detail:last-child {
+  border-bottom: none;
+}
+
+.stem-name {
+  color: var(--primary-gold);
+  font-size: 1.2rem;
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.stem-tengod {
+  color: var(--paper-bg);
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+}
+
+.stem-type {
+  color: var(--paper-bg);
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+/* 大运 */
+.childlimit-info {
+  text-align: center;
+  padding: 20px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  color: var(--primary-gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.fortunes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.fortune-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.fortune-item:hover {
+  border-color: var(--primary-gold);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+  transform: translateY(-3px);
+}
+
+.fortune-age {
+  color: var(--primary-gold);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
+.fortune-name {
+  color: var(--paper-bg);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 10px 0;
+  letter-spacing: 0.1em;
+}
+
+.fortune-stems {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.fortune-heaven,
+.fortune-earth {
+  color: var(--paper-bg);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* 特殊信息 */
+.special-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.special-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--ancient-bronze);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.special-item:hover {
+  border-color: var(--primary-gold);
+  transform: translateY(-3px);
+}
+
+.special-label {
+  display: block;
+  color: var(--primary-gold);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.2em;
+}
+
+.special-value {
+  display: block;
+  color: var(--paper-bg);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* 页脚 */
+.mystical-footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 2px solid var(--border-gold);
+  color: var(--paper-bg);
+  opacity: 0.7;
+}
+
+.mystical-footer p {
+  margin: 10px 0;
+  letter-spacing: 0.2em;
+}
+
+.footer-tech {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.footer-tech a {
+  color: var(--primary-gold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-tech a:hover {
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 加载状态 */
+.loading {
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9998;
+}
+
+.loading::before {
+  content: '玄机推演中...';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--ink-black), rgba(42, 42, 42, 0.98));
+  color: var(--primary-gold);
+  padding: 40px 60px;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  border: 2px solid var(--border-gold);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+  z-index: 9999;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/* 隐藏类 */
+.hidden {
+  display: none !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .title-main {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-container {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .fortunes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fortunes-grid {
+    grid-template-columns: 1fr;
+  }
+}

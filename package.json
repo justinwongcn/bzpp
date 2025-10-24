@@ -1,0 +1,38 @@
+{
+  "name": "bazi-paipan",
+  "version": "1.0.0",
+  "description": "八字排盘 (BaZi Fortune Telling) library using tyme4ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node server.js",
+    "dev": "node server.js",
+    "example": "npx ts-node examples/basic.ts",
+    "example:advanced": "npx ts-node examples/advanced.ts",
+    "example:hidden": "npx ts-node examples/analyze-hidden-stems.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinwongcn/bzpp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/justinwongcn/bzpp/issues"
+  },
+  "homepage": "https://github.com/justinwongcn/bzpp#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "tyme4ts": "^1.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
