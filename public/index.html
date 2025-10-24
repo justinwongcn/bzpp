@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>八字排盘在线体验</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>八字排盘在线体验</h1>
+      <p>基于 <a href="https://github.com/6tail/tyme4ts" target="_blank">tyme4ts</a> 实现</p>
+    </header>
+
+    <section class="form-section">
+      <h2>输入出生信息</h2>
+      <form id="bazi-form">
+        <div class="form-group">
+          <label for="year">出生年份</label>
+          <input type="number" id="year" name="year" placeholder="例如 1990" required />
+        </div>
+
+        <div class="form-group">
+          <label for="month">出生月份</label>
+          <input type="number" id="month" name="month" min="1" max="12" placeholder="1-12" required />
+        </div>
+
+        <div class="form-group">
+          <label for="day">出生日期</label>
+          <input type="number" id="day" name="day" min="1" max="31" placeholder="1-31" required />
+        </div>
+
+        <div class="form-group">
+          <label for="hour">出生小时</label>
+          <input type="number" id="hour" name="hour" min="0" max="23" placeholder="0-23" required />
+        </div>
+
+        <div class="form-group">
+          <label for="minute">出生分钟</label>
+          <input type="number" id="minute" name="minute" min="0" max="59" placeholder="0-59" required />
+        </div>
+
+        <div class="form-group">
+          <label for="second">出生秒数（可选）</label>
+          <input type="number" id="second" name="second" min="0" max="59" placeholder="0-59" />
+        </div>
+
+        <div class="form-group">
+          <label>性别</label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="male" checked /> 男</label>
+            <label><input type="radio" name="gender" value="female" /> 女</label>
+          </div>
+        </div>
+
+        <button type="submit">计算八字</button>
+        <div class="form-actions">
+          <button type="button" id="load-example">随机示例</button>
+          <button type="button" id="reset-form">清空</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="result-section">
+      <h2>排盘结果</h2>
+      <pre id="formatted-result" class="formatted-result">请填写出生信息，然后点击 "计算八字" 查看结果。</pre>
+
+      <div id="json-result" class="json-result hidden">
+        <h3>结构化数据</h3>
+        <pre></pre>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2024 八字排盘演示项目 | 基于 <a href="https://github.com/6tail/tyme4ts" target="_blank">tyme4ts</a> 构建</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

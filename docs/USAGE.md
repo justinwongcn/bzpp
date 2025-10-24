@@ -329,6 +329,9 @@ npm run example:advanced
 # 地支藏干与十神分析示例
 npm run example:hidden
 
+# 启动 Web 演示服务（默认 3000 端口）
+npm start
+
 # 直接运行编译后的版本
 node examples/using-compiled.js
 ```

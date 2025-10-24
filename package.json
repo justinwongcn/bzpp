@@ -6,6 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "start": "npm run build && node server.js",
+    "dev": "node server.js",
     "example": "npx ts-node examples/basic.ts",
     "example:advanced": "npx ts-node examples/advanced.ts",
     "example:hidden": "npx ts-node examples/analyze-hidden-stems.ts",
@@ -24,6 +26,8 @@
   },
   "homepage": "https://github.com/justinwongcn/bzpp#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "tyme4ts": "^1.3.7"
   },
   "devDependencies": {

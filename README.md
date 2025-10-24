@@ -8,12 +8,14 @@
 - ✅ 天干地支计算
 - ✅ 五行属性分析
 - ✅ 十神关系计算
-- ✅ 地支藏干显示
+- ✅ 地支藏干显示（包含藏干对应的十神）
 - ✅ 大运推算（10运程）
 - ✅ 起运信息计算
 - ✅ 胎元、胎息、命宫、身宫等特殊信息
 - ✅ 公历与农历转换
 - ✅ 完整的中文排盘格式输出
+- 🌐 Web 在线演示版
+- 🔌 RESTful API 接口
 
 ## 安装
 
@@ -211,6 +213,9 @@ npm run example:advanced
 
 # 地支藏干与十神分析
 npm run example:hidden
+
+# 启动 Web 演示服务
+npm start
 ```
 
 ## 技术栈
@@ -234,6 +239,14 @@ npm run build
 # 运行示例
 npm run example
 ```
+
+## 更多文档
+
+- ⚡ [快速开始](./QUICKSTART.md)
+- 📖 [详细使用指南](./docs/USAGE.md)
+- 🚀 [部署指南](./DEPLOYMENT.md)
+- 🌐 [Web 演示使用指南](./WEB_DEMO.md)
+- 📋 [更新日志](./CHANGELOG.md)
 
 ## 许可证
 
