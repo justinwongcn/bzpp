@@ -4,78 +4,190 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>八字排盘在线体验</title>
+  <title>八字排盘 · 玄机妙算</title>
   <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="mystical-bg"></div>
+  
   <div class="app">
-    <header>
-      <h1>八字排盘在线体验</h1>
-      <p>基于 <a href="https://github.com/6tail/tyme4ts" target="_blank">tyme4ts</a> 实现</p>
+    <header class="mystical-header">
+      <div class="header-ornament top"></div>
+      <h1 class="title-main">八字排盘</h1>
+      <p class="subtitle">观天地阴阳 · 察五行生克 · 悟命理玄机</p>
+      <div class="header-ornament bottom"></div>
     </header>
 
-    <section class="form-section">
-      <h2>输入出生信息</h2>
+    <section class="form-section mystical-card">
+      <div class="card-header">
+        <h2>☯ 生辰信息</h2>
+      </div>
       <form id="bazi-form">
-        <div class="form-group">
-          <label for="year">出生年份</label>
-          <input type="number" id="year" name="year" placeholder="例如 1990" required />
-        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="year">年</label>
+            <input type="number" id="year" name="year" placeholder="1990" required />
+          </div>
 
-        <div class="form-group">
-          <label for="month">出生月份</label>
-          <input type="number" id="month" name="month" min="1" max="12" placeholder="1-12" required />
-        </div>
+          <div class="form-group">
+            <label for="month">月</label>
+            <input type="number" id="month" name="month" min="1" max="12" placeholder="5" required />
+          </div>
 
-        <div class="form-group">
-          <label for="day">出生日期</label>
-          <input type="number" id="day" name="day" min="1" max="31" placeholder="1-31" required />
-        </div>
+          <div class="form-group">
+            <label for="day">日</label>
+            <input type="number" id="day" name="day" min="1" max="31" placeholder="15" required />
+          </div>
 
-        <div class="form-group">
-          <label for="hour">出生小时</label>
-          <input type="number" id="hour" name="hour" min="0" max="23" placeholder="0-23" required />
-        </div>
+          <div class="form-group">
+            <label for="hour">时</label>
+            <input type="number" id="hour" name="hour" min="0" max="23" placeholder="10" required />
+          </div>
 
-        <div class="form-group">
-          <label for="minute">出生分钟</label>
-          <input type="number" id="minute" name="minute" min="0" max="59" placeholder="0-59" required />
-        </div>
+          <div class="form-group">
+            <label for="minute">分</label>
+            <input type="number" id="minute" name="minute" min="0" max="59" placeholder="30" required />
+          </div>
 
-        <div class="form-group">
-          <label for="second">出生秒数（可选）</label>
-          <input type="number" id="second" name="second" min="0" max="59" placeholder="0-59" />
-        </div>
-
-        <div class="form-group">
-          <label>性别</label>
-          <div class="radio-group">
-            <label><input type="radio" name="gender" value="male" checked /> 男</label>
-            <label><input type="radio" name="gender" value="female" /> 女</label>
+          <div class="form-group">
+            <label for="second">秒</label>
+            <input type="number" id="second" name="second" min="0" max="59" placeholder="0" />
           </div>
         </div>
 
-        <button type="submit">计算八字</button>
-        <div class="form-actions">
-          <button type="button" id="load-example">随机示例</button>
-          <button type="button" id="reset-form">清空</button>
+        <div class="gender-selector">
+          <label>性别</label>
+          <div class="gender-buttons">
+            <label class="gender-btn">
+              <input type="radio" name="gender" value="male" checked />
+              <span class="gender-label">乾命 (男)</span>
+            </label>
+            <label class="gender-btn">
+              <input type="radio" name="gender" value="female" />
+              <span class="gender-label">坤命 (女)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-primary">
+            <span>✦</span> 起卦排盘 <span>✦</span>
+          </button>
+          <button type="button" id="load-example" class="btn-secondary">随机示例</button>
+          <button type="button" id="reset-form" class="btn-secondary">重新填写</button>
         </div>
       </form>
     </section>
 
-    <section class="result-section">
-      <h2>排盘结果</h2>
-      <pre id="formatted-result" class="formatted-result">请填写出生信息，然后点击 "计算八字" 查看结果。</pre>
-
-      <div id="json-result" class="json-result hidden">
-        <h3>结构化数据</h3>
-        <pre></pre>
+    <div id="result-container" class="result-container hidden">
+      <!-- 基本信息卡片 -->
+      <div class="mystical-card info-card">
+        <div class="card-header">
+          <h3>📅 基本信息</h3>
+        </div>
+        <div class="card-content">
+          <div class="info-row">
+            <span class="info-label">公历:</span>
+            <span id="solar-time" class="info-value"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">农历:</span>
+            <span id="lunar-time" class="info-value"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">性别:</span>
+            <span id="gender-info" class="info-value"></span>
+          </div>
+        </div>
       </div>
-    </section>
+
+      <!-- 四柱八字卡片 -->
+      <div class="mystical-card pillars-card">
+        <div class="card-header">
+          <h3>⚡ 四柱八字</h3>
+        </div>
+        <div class="card-content">
+          <div class="pillars-grid">
+            <div class="pillar-item year-pillar">
+              <div class="pillar-label">年柱</div>
+              <div class="pillar-name" id="year-pillar"></div>
+              <div class="pillar-element" id="year-element"></div>
+              <div class="pillar-tengod" id="year-tengod"></div>
+            </div>
+            <div class="pillar-item month-pillar">
+              <div class="pillar-label">月柱</div>
+              <div class="pillar-name" id="month-pillar"></div>
+              <div class="pillar-element" id="month-element"></div>
+              <div class="pillar-tengod" id="month-tengod"></div>
+            </div>
+            <div class="pillar-item day-pillar">
+              <div class="pillar-label">日柱</div>
+              <div class="pillar-name" id="day-pillar"></div>
+              <div class="pillar-element" id="day-element"></div>
+              <div class="pillar-tengod" id="day-tengod"></div>
+            </div>
+            <div class="pillar-item hour-pillar">
+              <div class="pillar-label">时柱</div>
+              <div class="pillar-name" id="hour-pillar"></div>
+              <div class="pillar-element" id="hour-element"></div>
+              <div class="pillar-tengod" id="hour-tengod"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 日主信息 -->
+      <div class="mystical-card daymaster-card">
+        <div class="card-header">
+          <h3>☀ 日主</h3>
+        </div>
+        <div class="card-content">
+          <div class="daymaster-info">
+            <span class="daymaster-name" id="daymaster-name"></span>
+            <span class="daymaster-element" id="daymaster-element"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 地支藏干 -->
+      <div class="mystical-card hidden-stems-card">
+        <div class="card-header">
+          <h3>🔮 地支藏干</h3>
+        </div>
+        <div class="card-content">
+          <div id="hidden-stems-content" class="hidden-stems-grid"></div>
+        </div>
+      </div>
+
+      <!-- 大运信息 -->
+      <div class="mystical-card fortune-card">
+        <div class="card-header">
+          <h3>🌟 大运流转</h3>
+        </div>
+        <div class="card-content">
+          <div class="childlimit-info">
+            <span id="childlimit-text"></span>
+          </div>
+          <div id="fortunes-content" class="fortunes-grid"></div>
+        </div>
+      </div>
+
+      <!-- 特殊信息 -->
+      <div class="mystical-card special-card">
+        <div class="card-header">
+          <h3>✨ 命理要素</h3>
+        </div>
+        <div class="card-content">
+          <div class="special-grid" id="special-info-content"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <footer>
-    <p>© 2024 八字排盘演示项目 | 基于 <a href="https://github.com/6tail/tyme4ts" target="_blank">tyme4ts</a> 构建</p>
+  <footer class="mystical-footer">
+    <p>天机不可泄露 · 仅供参考娱乐</p>
+    <p class="footer-tech">技术支持: <a href="https://github.com/6tail/tyme4ts" target="_blank">tyme4ts</a></p>
   </footer>
 
   <script src="/script.js"></script>
